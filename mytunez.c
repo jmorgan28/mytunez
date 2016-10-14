@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include<string.h>
 
-
-
-
 typedef struct song_node{ 
   char name[256];
   char artist[256];
@@ -26,10 +23,12 @@ void print_list(struct node *n){
   temp = (struct node *) malloc(sizeof(struct node));
   temp = n;
   printf("[ ");
-  printf("%d, ", (*n).i);
+  printf("%d -", song_node->name);
+  printf("%d, ", song_node->artists)
   while((*temp).next != NULL){
     temp = (*temp).next;
-    printf("%d, ", (*temp).i);
+    printf("%d -", song_node->name);
+    printf("%d, ", song_node->artists)
   }
   printf("]\n");
 }
