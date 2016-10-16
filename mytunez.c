@@ -158,6 +158,20 @@ struct song_node * ret_rand(struct song_node *n){ //make more random
   }
   return n;
 }
+
+struct song_node * rem(struct song_node *n, int i){
+  if(i == 0){
+    return n->next;
+  }
+  struct song_node *rem = n;
+  int k = 0;
+  while(k < i-1){
+    k ++;
+    n = n->next;
+  }
+  n->next = (n->next)->next;
+  return rem;
+}
   
 
 int main(){
@@ -185,7 +199,9 @@ int main(){
   print_list(find_first_artist(f,"beatles"));
   print_list(f);
   printf("%d\n" ,length_list(f));
-  print_list(ret_rand(f));
+  print_list(f);
+  printf("----\n");
+  print_list(rem(f,5));
   // f->next = g;
   //print_list(f);
   //lower(e);
