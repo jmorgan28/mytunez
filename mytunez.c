@@ -26,16 +26,13 @@ void print_list(struct song_node *n){
 }
 
 char * lower(char *p){
-  while(*p){
-    if( (*p >= 65) && (*p <= 90)){
-      *p = *p + 32;
-  
+  char * temp = p;
+  while(*temp){
+    if( (*temp >= 65) && (*temp <= 90)){
+      *temp = (*temp + 32);
 	  }
-  
-    p ++;
-    //printf("%s\n", *p);
+    temp ++;
   }
-  
   return p;	
 }
 
@@ -77,6 +74,21 @@ struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){
   return ret;
 }
 
+struct song_node * find_song(struct song_node *n, char *s){
+  //printf("1\n");
+  char *s1 = lower(s);
+  //printf("1\n");
+  while(n){
+    if(strcmp(n->name, s1) == 0){
+      return n;
+    }
+    n = n->next; 
+  }
+  //printf("1\n");
+  return 0;
+  
+}
+
 
 struct song_node * free_list(struct song_node *n){ 
   struct song_node *temp;
@@ -113,6 +125,7 @@ int main(){
   f = ((insert_order(f,"aaa", "Beatles")));
   f = ((insert_order(f,"bbaa", "Beatles")));
   print_list(f);
+  print_list(find_song(f,"dsddfg"));
   // f->next = g;
   //print_list(f);
   //lower(e);
