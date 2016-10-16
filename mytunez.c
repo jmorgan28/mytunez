@@ -59,15 +59,23 @@ struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){/
   lower(n->name);
   lower(n->artist);
   lower(temp->artist);
-  //char p1[256] = strcat(temp->artist,temp->song);
-  //char p1[256] = strcat(n->artist,n->song);
-  if(strcmp(n->name, temp->name) >= 0){
+  printf("this");
+  char p1[256] = "";
+  strcat(p1,temp->artist);
+  strcat(p1,temp->name);
+  char p2[256] = "";
+  strcat(p2,n->artist);
+  strcat(p2,n->name);
+  if(strcmp(p2, p1) >= 0){
     // printf("you \n");
     temp->next = n;
     return temp;
   }
   while(n->next != NULL){
-    if( (strcmp(n->name, temp->name) <= 0) && strcmp((n->next)->name, temp->name)>= 0 && n->next != NULL){
+    char p3[256] = "";
+    strcat(p3,(n->next)->artist);
+    strcat(p3,(n->next)->name);
+    if( (strcmp(p2, p1) <= 0) && strcmp(p3, p1)>= 0 && n->next != NULL){
       struct song_node *second = n->next;
       n->next = temp;
       temp->next = second;
