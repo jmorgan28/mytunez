@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include<string.h>
 
+// may need to change insert to take into acocunt aritist
+
 typedef struct song_node{ 
   char name[256];
   char artist[256];
@@ -18,8 +20,8 @@ void print_list(struct song_node *n){
   }
   printf("[ ");
   while(n){
-    printf("%s-", n->name);
-    printf("%s, ", n->artist);
+    printf("%s-", n->artist);
+    printf("%s, ", n->name);
     n = n->next;
   }
   printf("]\n");
@@ -47,7 +49,7 @@ struct song_node * insert_front(struct song_node *n, char s[256], char a[256] ){
   return temp;
 }
 
-struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){
+struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){// change so "artist - song" 
   struct song_node *temp;
   struct song_node *ret = n;
   temp = (struct song_node *) malloc(sizeof(struct song_node));
@@ -57,6 +59,8 @@ struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){
   lower(n->name);
   lower(n->artist);
   lower(temp->artist);
+  //char p1[256] = strcat(temp->artist,temp->song);
+  //char p1[256] = strcat(n->artist,n->song);
   if(strcmp(n->name, temp->name) >= 0){
     // printf("you \n");
     temp->next = n;
