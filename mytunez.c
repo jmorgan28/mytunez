@@ -29,9 +29,9 @@ char * lower(char *p){
   char * temp = p;
   while(*temp){
     if( (*temp >= 65) && (*temp <= 90)){
-      *temp = (*temp + 32);
+      *temp += 32;
 	  }
-    temp ++;
+    temp = temp +1;
   }
   return p;	
 }
@@ -39,9 +39,9 @@ char * lower(char *p){
 struct song_node * insert_front(struct song_node *n, char s[256], char a[256] ){
   struct song_node *temp;
   temp = (struct song_node *) malloc(sizeof(struct song_node));
-  lower(s);
   strcpy(temp->name,s);
   strcpy(temp->artist,a);
+  lower(temp->name);
   temp->next = n;
   return temp;
 }
@@ -74,12 +74,13 @@ struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){
   return ret;
 }
 
-struct song_node * find_song(struct song_node *n, char *s){
-  //printf("1\n");
-  char *s1 = lower(s);
-  //printf("1\n");
+struct song_node * find_song(struct song_node *n, char *s[256]){
+  struct song_node *temp;
+  temp = (struct song_node *) malloc(sizeof(struct song_node));
+  strcpy(temp->name,s);
+  lower(temp->name);
   while(n){
-    if(strcmp(n->name, s1) == 0){
+    if(strcmp(n->name, temp->name) == 0){
       return n;
     }
     n = n->next; 
@@ -120,12 +121,12 @@ int main(){
   f = (insert_order(f,"A day in the life", "Beatles"));
   f = ((insert_order(f,"baaa", "Beatles")));
   print_list(f);
-  print_list(((insert_order(f,"zebra", "Beatles"))));
-  f = ((insert_order(f,"zz", "Beatles")));
-  f = ((insert_order(f,"aaa", "Beatles")));
+  print_list(((insert_order(f,"ZEbRA", "Beatles"))));
+  f = ((insert_order(f,"zz", "BeaTles")));
+  f = ((insert_order(f,"aAA", "Beatles")));
   f = ((insert_order(f,"bbaa", "Beatles")));
   print_list(f);
-  print_list(find_song(f,"dsddfg"));
+  print_list(find_song(f,"AAA"));
   // f->next = g;
   //print_list(f);
   //lower(e);
