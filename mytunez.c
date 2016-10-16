@@ -34,14 +34,14 @@ struct song_node * insert_front(struct node *n, char s[256], char a[256] ){
   return temp;
 }
 
-/*
-struct node * free_list(struct node *n){
-  struct node *temp;
-  temp = (struct node *) malloc(sizeof(struct node));
+
+struct song_node * free_list(struct song_node *n){
+  struct song_node *temp;
+  temp = (struct song_node *) malloc(sizeof(struct song_node));
   temp = n;
   while((*temp).next != NULL){
-    struct node *temp1;
-    temp1 = (struct node *) malloc(sizeof(struct node));
+    struct song_node *temp1;
+    temp1 = (struct song_node *) malloc(sizeof(struct song_node));
     temp = (*temp).next;
     free(temp1);
     temp1 = NULL;
@@ -49,7 +49,7 @@ struct node * free_list(struct node *n){
   n= NULL;
   return n;
 }
-*/
+
 
 int main(){
   struct song_node *f;
@@ -61,8 +61,9 @@ int main(){
   //struct song_node *g;
   // g = (struct song_node *) malloc(sizeof(struct song_node));
   print_list(f);
-  print_list(insert_front(f,"Girl", "Beatles"));
+  print_list(free_list(insert_front(f,"Girl", "Beatles")));
   // f->next = g;
+  //print_list(f);
   return 0;
 }
 
