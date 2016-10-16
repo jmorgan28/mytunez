@@ -51,20 +51,25 @@ struct song_node * insert_front(struct song_node *n, char s[256], char a[256] ){
 
 struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){
   struct song_node *temp;
+  struct song_node *ret = n;
   temp = (struct song_node *) malloc(sizeof(struct song_node));
   strcpy(temp->name,s);
   strcpy(temp->artist,a);
   lower(temp->name);
-  if(strcmp(n->name, temp->name) > 0){
+  if(strcmp(n->name, temp->name) >= 0){
     // printf("you \n");
     temp->next = n;
     return temp;
   }
-
-
-  //printf("you \n");
-  //while((strcmp((lower(n->name)), (lower(temp->name)))) > 0){
-  //n = n->next;
+  while(n){
+    if( (strcmp(n->name, temp->name) <= 0) && strcmp((n->next)->name, temp->name)>= 0){
+      struct song_node *second = n->next;
+      n->next = temp;
+      temp->next = second;
+      return ret;
+    }
+    n = n->next;
+  }
 
   //}
   return n;
@@ -98,7 +103,8 @@ int main(){
   //struct song_node *g;
   // g = (struct song_node *) malloc(sizeof(struct song_node));
   //print_list(insert_front(f, "that" ,"so"));
-  print_list(insert_order(f,"A day in the life", "Beatles"));
+  f = (insert_order(f,"A day in the life", "Beatles"));
+  f = ((insert_order(f,"baaa", "Beatles")));
   // f->next = g;
   //print_list(f);
   //lower(e);
