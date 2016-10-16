@@ -27,6 +27,19 @@ void print_list(struct song_node *n){
   printf("]\n");
 }
 
+int length_list(struct song_node *n){
+  if(n == NULL || n == 0){
+    return 0;
+  }
+  int i = 0;
+  while(n){
+    i ++;
+    n = n->next;
+  }
+  return i;
+}
+
+
 char * lower(char *p){
   char * temp = p;
   while(*temp){
@@ -136,6 +149,16 @@ struct song_node * free_list(struct song_node *n){
   return n;
 }
 
+struct song_node * ret_rand(struct song_node *n){ //make more random
+  int i = rand() % length_list(n);
+  int k =0;
+  while(k < i){
+    n = n->next;
+    k ++;
+  }
+  return n;
+}
+  
 
 int main(){
   struct song_node *f;
@@ -155,10 +178,14 @@ int main(){
   f = ((insert_order(f,"zz", "BeaTles")));
   f = ((insert_order(f,"aAA", "Beatles")));
   f = ((insert_order(f,"bbaa", "Beatles")));
+  f = ((insert_order(f,"bzzz", "Bzzzes")));
   print_list(f);
   print_list(find_song(f,"AAA"));
   printf("----\n");
-  print_list(find_first_artist(f,"BEACH boys"));
+  print_list(find_first_artist(f,"beatles"));
+  print_list(f);
+  printf("%d\n" ,length_list(f));
+  print_list(ret_rand(f));
   // f->next = g;
   //print_list(f);
   //lower(e);
