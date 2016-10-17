@@ -10,8 +10,7 @@ typedef struct song_node{
   struct song_node *next;
 } song_node;
 
-//song_node *table[26];
-
+song_node *table[26]; 
 
 void print_list(struct song_node *n){
   if(n == NULL || n == 0){
@@ -172,9 +171,26 @@ struct song_node * rem(struct song_node *n, int i){
   n->next = (n->next)->next;
   return rem;
 }
+
+void add_song(char *s, char *n){// capuitalization 
+  char rem = n[0] - 97;
+  printf("\n%d\n",rem);
+  //if(table[rem] == NULL){
+  //strcpy(table[rem]->name, s);
+  //strcpy(table[rem]->artist, n);
+  //printf("\n%d\n",rem);
+  //}
+  //else{
+
+  //malloc?
+  
+  insert_order(table[rem],s,n);
+  //}
+}
   
 
 int main(){
+  /*
   struct song_node *f;
   f = (struct song_node *) malloc(sizeof(struct song_node));
   char e[256] = "God only knows"; 
@@ -199,13 +215,17 @@ int main(){
   print_list(find_first_artist(f,"beatles"));
   print_list(f);
   printf("%d\n" ,length_list(f));
-  print_list(f);
-  printf("----\n");
-  print_list(rem(f,5));
+  //print_list(f);
+  //printf("----\n");
+  //print_list(rem(f,5));
   // f->next = g;
   //print_list(f);
   //lower(e);
   //printf("%s \n", e);
+  */
+  printf("--------------------\n");
+  add_song("smells Like Teen Spirit", "nirvana");
+  print_list(table[13]);
   return 0;
 }
 
