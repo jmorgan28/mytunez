@@ -187,6 +187,21 @@ void add_song(char *s, char *n){// capuitalization
   }
   insert_order(table[rem],s,n);
 }
+
+struct song_node * search_song(char *s){
+  int i = 0; 
+  while(i < 26){
+    if(table[i] != NULL){
+      if(find_song(table[i],s) != 0){
+	return find_song(table[i],s);
+      }
+    }
+    i ++;
+  }
+  return 0;
+}
+
+
   
 
 int main(){
@@ -231,6 +246,7 @@ int main(){
   add_song("szells Like Teen Spirit", "abba");
   add_song("dancing queen", "anta");
   print_list(table[13]);
+  print_list(search_song("smells like teen spirit"));
   return 0;
 }
 
