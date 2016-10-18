@@ -174,8 +174,14 @@ struct song_node * rem(struct song_node *n, int i){
   return rem;
 }
 
-void add_song(char *s, char *n){// capuitalization 
-  char rem = n[0] - 97;
+void add_song(char *s, char *n){// capuitalization
+  char rem;
+  if( (n[0] >= 65) && (n[0] <= 90)){
+    rem = (n[0] + 32) -97;
+	  }
+  else{
+    rem = n[0] - 97;
+  }
   if(table[rem] == 0){
     table[rem] = (struct song_node *) malloc(sizeof(struct song_node));
   }
@@ -218,9 +224,12 @@ int main(){
   //printf("%s \n", e);
   */
   printf("--------------------\n");
-  add_song("smells Like Teen Spirit", "nirvana");
+  add_song("smells Like Teen Spirit", "Nirvana");
   add_song("saells Like Teen Spirit", "nirvana");
-  add_song("szells Like Teen Spirit", "nirvana");
+  add_song("szells Like Teen Spirit", "Nirvana");
+  add_song("szells Like Teen Spirit", "na");
+  add_song("szells Like Teen Spirit", "abba");
+  add_song("dancing queen", "anta");
   print_list(table[13]);
   return 0;
 }
