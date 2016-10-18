@@ -201,7 +201,19 @@ struct song_node * search_song(char *s){
   return 0;
 }
 
-
+struct song_node * search_artist(char *n){
+  char rem;
+  if( (n[0] >= 65) && (n[0] <= 90)){
+    rem = (n[0] + 32) -97;
+	  }
+  else{
+    rem = n[0] - 97;
+  }
+  if(table[rem] != 0){
+    return find_first_artist(table[rem],n);
+  }
+  return 0;
+}
   
 
 int main(){
@@ -246,7 +258,7 @@ int main(){
   add_song("szells Like Teen Spirit", "abba");
   add_song("dancing queen", "anta");
   print_list(table[13]);
-  print_list(search_song("smells like teen spirit"));
+  print_list(search_artist("abba"));
   return 0;
 }
 
