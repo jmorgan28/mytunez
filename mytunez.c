@@ -218,7 +218,15 @@ struct song_node * search_artist(char *n){
 void print_let(char n){
   print_list(table[n-97]);
 }
-  
+
+void print_lib(){
+  char i = 0;
+  while(i < 26){
+    print_list(table[i]);
+    printf("\n");
+    i ++;
+  }
+}
 
 int main(){
   /*
@@ -263,6 +271,8 @@ int main(){
   add_song("dancing queen", "anta");
   print_list(table[13]);
   print_let('n');
+  printf("--------------------\n");
+  print_lib();
   return 0;
 }
 
