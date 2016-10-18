@@ -19,9 +19,11 @@ void print_list(struct song_node *n){
   }
   printf("[ ");
   while(n){
-    printf("%s-", n->artist);
-    printf("%s, ", n->name);
-    n = n->next;
+    if(n->artist != ""){
+      printf("%s-", n->artist);
+      printf("%s, ", n->name);
+      n = n->next;
+    }
   }
   printf("]\n");
 }
@@ -71,7 +73,7 @@ struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){/
   lower(n->name);
   lower(n->artist);
   lower(temp->artist);
-  printf("this");
+  //printf("this");
   char p1[256] = "";
   strcat(p1,temp->artist);
   strcat(p1,temp->name);
@@ -174,18 +176,10 @@ struct song_node * rem(struct song_node *n, int i){
 
 void add_song(char *s, char *n){// capuitalization 
   char rem = n[0] - 97;
-  printf("\n%d\n",rem);
-  //if(table[rem] == NULL){
-  //strcpy(table[rem]->name, s);
-  //strcpy(table[rem]->artist, n);
-  //printf("\n%d\n",rem);
-  //}
-  //else{
-
-  //malloc?
-  
+  if(table[rem] == 0){
+    table[rem] = (struct song_node *) malloc(sizeof(struct song_node));
+  }
   insert_order(table[rem],s,n);
-  //}
 }
   
 
@@ -225,6 +219,8 @@ int main(){
   */
   printf("--------------------\n");
   add_song("smells Like Teen Spirit", "nirvana");
+  add_song("saells Like Teen Spirit", "nirvana");
+  add_song("szells Like Teen Spirit", "nirvana");
   print_list(table[13]);
   return 0;
 }
