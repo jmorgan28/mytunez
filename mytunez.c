@@ -214,6 +214,10 @@ struct song_node * search_artist(char *n){
   }
   return 0;
 }
+
+void print_let(char n){
+  print_list(table[n-97]);
+}
   
 
 int main(){
@@ -258,7 +262,7 @@ int main(){
   add_song("szells Like Teen Spirit", "abba");
   add_song("dancing queen", "anta");
   print_list(table[13]);
-  print_list(search_artist("abba"));
+  print_let('n');
   return 0;
 }
 
