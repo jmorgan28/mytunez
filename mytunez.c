@@ -278,29 +278,25 @@ void rem_song(char *n){//deal with capitalization
   struct song_node *temp = table[w];
   struct song_node *sec = table[w];
   int i = 0;
-  // printf("%d\n", w);
-  //printf("%s\n", ret->name);
-  //printf("%s\n", n);
   int rems = length_list(temp);
-  while(i < rems  && strcmp(ret->name, n) != 0){
+  //printf("%d\n", rems);
+  while(i < rems -1  && strcmp(temp->name, n) != 0){
     i ++;
-    ret = ret->next;
+    temp = temp->next;
   }
-  print_list(table[w]);
+  //print_list(table[w]);
+  //printf("i = %d\n", i);
   if(i == 0){
   table[w] = rem(ret,i);
   }
   else{
-    int k = 0;
-    while(k < rems  && strcmp((sec->next)->name, n) != 0){
-      k ++;
-      sec = sec->next;
+    //printf("note:\n");
+    //print_list(rem(table[w], i));
+    table[w] = rem(table[w], i);
   }
-    sec->next = rem(ret,1);
-
-  }
-  //print_list(table[w]); 
 }
+  
+
 
 void delete(){
   int i = 0;
@@ -353,10 +349,9 @@ int main(){
   //printf("--------------------\n");
   add_song("smells Like Teen Spirit", "Nirvana");
   add_song("saells Like Teen Spirit", "nirvana");
-  add_song("szells Like Teen Spirit", "Nirvana");
-  add_song("szells Like Teen Spirit", "na");
+  add_song("scells Like Teen Spirit", "na");
   add_song("szells Like Teen Spasasasairit", "nzzzz");
-  add_song("szells Like Teen Spirit", "abba");
+  add_song("szells Like Tsseen Spirit", "abba");
   add_song("dancing queen", "anta");
   // print_list(table[13]);
   //print_let('n');
@@ -365,9 +360,9 @@ int main(){
   printf("--------------------\n");
   // shuffle();
   //print_artist("nzzzz");
-  print_list(table[13]);
-  rem_song("szells like teen spirit");
-  print_list(table[13]);
+  print_list(table[0]);
+  rem_song("szells like tsseen spirit");
+  print_list(table[0]);
   //print_lib();//
   printf("--------------------\n");
   //delete();
