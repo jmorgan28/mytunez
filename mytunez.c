@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
-
+#include <time.h>
 // may need to change insert to take into acocunt aritist
 
 typedef struct song_node{ 
@@ -150,8 +150,10 @@ struct song_node * free_list(struct song_node *n){
   return n;
 }
 
+
+
 struct song_node * ret_rand(struct song_node *n){ //make more random
-  sranddev();
+  srand(time(NULL));
   int i = rand() % length_list(n);
   int k =0;
   while(k < i){
@@ -254,7 +256,7 @@ int main(){
   print_list(find_first_artist(f,"beatles"));
   print_list(f);
   printf("%d\n" ,length_list(f));
-  print_list(ret_ran(f));
+  print_list(ret_rand(f));
   //print_list(f);
   //printf("----\n");
   //print_list(rem(f,5));
