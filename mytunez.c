@@ -164,17 +164,19 @@ struct song_node * ret_rand(struct song_node *n){ //make more random
 }
 
 struct song_node * rem(struct song_node *n, int i){
+  struct song_node *rem;
+  rem = (struct song_node *) malloc(sizeof(struct song_node));
+  rem = n;
   if(i == 0){
-    return n->next;
+    return rem->next;
   }
-  struct song_node *rem = n;
   int k = 0;
   while(k < i-1){
     k ++;
-    n = n->next;
+    rem = rem->next;
   }
-  n->next = (n->next)->next;
-  return rem;
+  rem->next = (rem->next)->next;
+  return n;
 }
 
 void add_song(char *s, char *n){// capuitalization
@@ -254,6 +256,28 @@ void print_artist(char *n){// deal with capitalization
   }
 }
 
+
+void rem_song(char *n){//deal with capitalization
+  struct song_node *ret = search_song(n) ;
+  char w = ((ret->artist)[0]) -97;
+  // printf("%d\n", w);
+  struct song_node *temp = table[w];
+  int i = 0;
+  printf("%d\n", w);
+  printf("%s\n", ret->name);
+  printf("%s\n", n);
+  int rems = length_list(temp);
+  while(i < rems  && strcmp(ret->name, n) != 0){
+    i ++;
+    ret = ret->next;
+  }
+  print_list(table[w]); 
+  table[w] = rem(ret,i);
+  print_list(table[w]); 
+}
+
+
+
 int main(){
   /*
   struct song_node *f;
@@ -299,10 +323,13 @@ int main(){
   print_list(table[13]);
   //print_let('n');
   printf("--------------------\n");
-  //print_lib();
+  print_lib();
   printf("--------------------\n");
   // shuffle();
-  print_artist("nzzzz");
+  //print_artist("nzzzz");
+  rem_song("smells like teen spirit");
+  //print_lib();
+  
   return 0;
   
 }
