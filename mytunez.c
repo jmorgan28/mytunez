@@ -151,6 +151,7 @@ struct song_node * free_list(struct song_node *n){
 }
 
 struct song_node * ret_rand(struct song_node *n){ //make more random
+  sranddev();
   int i = rand() % length_list(n);
   int k =0;
   while(k < i){
@@ -229,7 +230,6 @@ void print_lib(){
 }
 
 int main(){
-  /*
   struct song_node *f;
   f = (struct song_node *) malloc(sizeof(struct song_node));
   char e[256] = "God only knows"; 
@@ -254,6 +254,7 @@ int main(){
   print_list(find_first_artist(f,"beatles"));
   print_list(f);
   printf("%d\n" ,length_list(f));
+  print_list(ret_ran(f));
   //print_list(f);
   //printf("----\n");
   //print_list(rem(f,5));
@@ -261,8 +262,7 @@ int main(){
   //print_list(f);
   //lower(e);
   //printf("%s \n", e);
-  */
-  printf("--------------------\n");
+  /*printf("--------------------\n");
   add_song("smells Like Teen Spirit", "Nirvana");
   add_song("saells Like Teen Spirit", "nirvana");
   add_song("szells Like Teen Spirit", "Nirvana");
@@ -274,5 +274,6 @@ int main(){
   printf("--------------------\n");
   print_lib();
   return 0;
+  */
 }
 
