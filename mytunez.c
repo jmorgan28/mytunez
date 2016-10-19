@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include<string.h>
 #include <time.h>
+#include<math.h>
 // may need to change insert to take into acocunt aritist
 
 typedef struct song_node{ 
@@ -259,8 +260,8 @@ void print_lib(){
     k++;
   }
   
-}
-*/
+}*/
+
 
 void print_artist(char *n){// deal with capitalization
   struct song_node *temp = search_artist(n);
