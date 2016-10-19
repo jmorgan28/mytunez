@@ -176,20 +176,20 @@ struct song_node * ret_rand(struct song_node *n){ //make more random
 }
 
 struct song_node * rem(struct song_node *n, int i){
-  struct song_node *rem;
-  rem = (struct song_node *) malloc(sizeof(struct song_node));
-  rem = n;
+  struct song_node *ret;
+  ret = (struct song_node *) malloc(sizeof(struct song_node));
+  ret = n;
   if(i == 0){
-    return rem->next;
+    return ret->next;
   }
   int k = 0;
   while(k < i-1){
     k ++;
-    rem = rem->next;
+    ret = ret->next;
   }
-  rem->next = (rem->next)->next;
-  print_list(n);
-  printf("--------------------------------------\n");
+  ret->next = (ret->next)->next;
+  //print_list(n);
+  //printf("--------------------------------------\n");
   return n;
 }
 
@@ -272,21 +272,33 @@ void print_artist(char *n){// deal with capitalization
 
 
 void rem_song(char *n){//deal with capitalization
-  struct song_node *ret = search_song(n) ;
+  struct song_node *ret = search_song(n);
   char w = ((ret->artist)[0]) -97;
   // printf("%d\n", w);
   struct song_node *temp = table[w];
+  struct song_node *sec = table[w];
   int i = 0;
-  printf("%d\n", w);
-  printf("%s\n", ret->name);
-  printf("%s\n", n);
+  // printf("%d\n", w);
+  //printf("%s\n", ret->name);
+  //printf("%s\n", n);
   int rems = length_list(temp);
   while(i < rems  && strcmp(ret->name, n) != 0){
     i ++;
     ret = ret->next;
   }
-  print_list(table[w]); 
-  rem(ret,i);
+  print_list(table[w]);
+  if(i == 0){
+  table[w] = rem(ret,i);
+  }
+  else{
+    int k = 0;
+    while(k < rems  && strcmp((sec->next)->name, n) != 0){
+      k ++;
+      sec = sec->next;
+  }
+    sec->next = rem(ret,1);
+
+  }
   //print_list(table[w]); 
 }
 
@@ -319,6 +331,9 @@ int main(){
   f = ((insert_order(f,"bbaa", "Beatles")));
   f = ((insert_order(f,"bzzz", "Bzzzes")));
   print_list(f);
+  printf("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
+  print_list(rem(f,0));
+  printf("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
   print_list(find_song(f,"AAA"));
   printf("----\n");
   print_list(find_first_artist(f,"beatles"));
@@ -335,7 +350,7 @@ int main(){
   //printf("%s \n", e);*/
 
 
-  printf("--------------------\n");
+  //printf("--------------------\n");
   add_song("smells Like Teen Spirit", "Nirvana");
   add_song("saells Like Teen Spirit", "nirvana");
   add_song("szells Like Teen Spirit", "Nirvana");
@@ -350,10 +365,13 @@ int main(){
   printf("--------------------\n");
   // shuffle();
   //print_artist("nzzzz");
-  //rem_song("smells like teen spirit");
+  print_list(table[13]);
+  rem_song("szells like teen spirit");
+  print_list(table[13]);
+  //print_lib();//
   printf("--------------------\n");
-  delete();
-  print_lib();
+  //delete();
+  //print_lib();//
   
   return 0;
   
