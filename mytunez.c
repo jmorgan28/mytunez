@@ -231,7 +231,7 @@ void print_lib(){
   }
 }
 
-void shuffle(){
+/*void shuffle(){
   int k = 0;
   while(k < 20){
     sranddev();
@@ -243,6 +243,15 @@ void shuffle(){
     k++;
   }
   
+}
+*/
+
+void print_artist(char *n){// deal with capitalization
+  struct song_node *temp = search_artist(n);
+  while(temp!= NULL && strcmp(temp->artist,n) ==0){
+    printf("%s-%s\n", temp->name, temp->artist);
+    temp = temp->next;
+  }
 }
 
 int main(){
@@ -284,14 +293,16 @@ int main(){
   add_song("saells Like Teen Spirit", "nirvana");
   add_song("szells Like Teen Spirit", "Nirvana");
   add_song("szells Like Teen Spirit", "na");
+  add_song("szells Like Teen Spasasasairit", "nzzzz");
   add_song("szells Like Teen Spirit", "abba");
   add_song("dancing queen", "anta");
   print_list(table[13]);
-  print_let('n');
+  //print_let('n');
   printf("--------------------\n");
-  print_lib();
+  //print_lib();
   printf("--------------------\n");
-  shuffle();
+  // shuffle();
+  print_artist("nzzzz");
   return 0;
   
 }
