@@ -135,7 +135,7 @@ struct song_node * find_first_artist(struct song_node *n, char *s[256]){
 }
 
 
-struct song_node * free_list(struct song_node *n){ 
+/*struct song_node * free_list(struct song_node *n){ 
   struct song_node *temp;
   temp = (struct song_node *) malloc(sizeof(struct song_node));
   temp = n;
@@ -147,6 +147,18 @@ struct song_node * free_list(struct song_node *n){
     temp1 = NULL;
   }
   n= NULL;
+  return n;
+}*/
+
+
+struct node * free_list( struct song_node *n ) {
+
+  struct node *f = n;
+  while ( n ) {
+    n = n->next;
+    free(f);
+    f = n;    
+  }
   return n;
 }
 
@@ -176,6 +188,8 @@ struct song_node * rem(struct song_node *n, int i){
     rem = rem->next;
   }
   rem->next = (rem->next)->next;
+  print_list(n);
+  printf("--------------------------------------\n");
   return n;
 }
 
@@ -272,15 +286,21 @@ void rem_song(char *n){//deal with capitalization
     ret = ret->next;
   }
   print_list(table[w]); 
-  table[w] = rem(ret,i);
-  print_list(table[w]); 
+  rem(ret,i);
+  //print_list(table[w]); 
 }
 
-
+void delete(){
+  int i = 0;
+  while(i < 26){
+    table[i] = free_list(table[i]);
+    i ++;
+  }
+}
 
 int main(){
-  /*
-  struct song_node *f;
+  
+  /*struct song_node *f;
   f = (struct song_node *) malloc(sizeof(struct song_node));
   char e[256] = "God only knows"; 
   //char d[256] = "Beach Boys";
@@ -304,14 +324,17 @@ int main(){
   print_list(find_first_artist(f,"beatles"));
   print_list(f);
   printf("%d\n" ,length_list(f));
-  print_list(ret_rand(f));*/
-  //print_list(f);
+  print_list(ret_rand(f));
+  free_list(f);
+  print_list(f);
   //printf("----\n");
   //print_list(rem(f,5));
   // f->next = g;
   //print_list(f);
   //lower(e);
-  //printf("%s \n", e);
+  //printf("%s \n", e);*/
+
+
   printf("--------------------\n");
   add_song("smells Like Teen Spirit", "Nirvana");
   add_song("saells Like Teen Spirit", "nirvana");
@@ -320,15 +343,17 @@ int main(){
   add_song("szells Like Teen Spasasasairit", "nzzzz");
   add_song("szells Like Teen Spirit", "abba");
   add_song("dancing queen", "anta");
-  print_list(table[13]);
+  // print_list(table[13]);
   //print_let('n');
-  printf("--------------------\n");
-  print_lib();
+  //printf("--------------------\n");
+  //print_lib();
   printf("--------------------\n");
   // shuffle();
   //print_artist("nzzzz");
-  rem_song("smells like teen spirit");
-  //print_lib();
+  //rem_song("smells like teen spirit");
+  printf("--------------------\n");
+  delete();
+  print_lib();
   
   return 0;
   
