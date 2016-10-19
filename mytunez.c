@@ -231,7 +231,22 @@ void print_lib(){
   }
 }
 
+void shuffle(){
+  int k = 0;
+  while(k < 20){
+    sranddev();
+    int i = rand() % 26;
+    if(table[i] != NULL){
+      struct song_node *temp = ret_rand(table[i]);
+      printf("%s-%s\n",temp->name, temp->artist );
+    }
+    k++;
+  }
+  
+}
+
 int main(){
+  /*
   struct song_node *f;
   f = (struct song_node *) malloc(sizeof(struct song_node));
   char e[256] = "God only knows"; 
@@ -256,7 +271,7 @@ int main(){
   print_list(find_first_artist(f,"beatles"));
   print_list(f);
   printf("%d\n" ,length_list(f));
-  print_list(ret_rand(f));
+  print_list(ret_rand(f));*/
   //print_list(f);
   //printf("----\n");
   //print_list(rem(f,5));
@@ -264,7 +279,7 @@ int main(){
   //print_list(f);
   //lower(e);
   //printf("%s \n", e);
-  /*printf("--------------------\n");
+  printf("--------------------\n");
   add_song("smells Like Teen Spirit", "Nirvana");
   add_song("saells Like Teen Spirit", "nirvana");
   add_song("szells Like Teen Spirit", "Nirvana");
@@ -275,7 +290,9 @@ int main(){
   print_let('n');
   printf("--------------------\n");
   print_lib();
+  printf("--------------------\n");
+  shuffle();
   return 0;
-  */
+  
 }
 
