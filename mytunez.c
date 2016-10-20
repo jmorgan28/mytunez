@@ -152,7 +152,7 @@ struct song_node * find_first_artist(struct song_node *n, char *s[256]){
 }*/
 
 
-struct node * free_list( struct song_node *n ) {
+struct node * free_list( struct song_node *n ) { //make null
 
   struct node *f = n;
   while ( n ) {
@@ -166,7 +166,7 @@ struct node * free_list( struct song_node *n ) {
 
 
 struct song_node * ret_rand(struct song_node *n){ //make more random
-  srand(time(NULL));
+  
   int i = rand() % length_list(n);
   int k =0;
   while(k < i){
@@ -248,19 +248,20 @@ void print_lib(){
   }
 }
 
-/*void shuffle(){
+void shuffle(){
   int k = 0;
-  while(k < 20){
-    sranddev(); // used to be using time
+  while(k < 4){
+    // used to be using time
     int i = rand() % 26;
     if(table[i] != NULL){
       struct song_node *temp = ret_rand(table[i]);
       printf("%s-%s\n",temp->name, temp->artist );
+      k ++;
     }
-    k++;
+    
   }
   
-}*/
+}
 
 
 void print_artist(char *n){// deal with capitalization
@@ -307,8 +308,8 @@ void delete(){
   }
 }
 
-int main(){
-  
+int main(){ // make main file
+  srand(time(NULL));
   /*struct song_node *f;
   f = (struct song_node *) malloc(sizeof(struct song_node));
   char e[256] = "God only knows"; 
@@ -361,13 +362,14 @@ int main(){
   printf("--------------------\n");
   // shuffle();
   //print_artist("nzzzz");
-  print_list(table[0]);
-  rem_song("szells like tsseen spirit");
-  print_list(table[0]);
+  //print_list(table[0]);
+  //rem_song("szells like tsseen spirit");
+  //print_list(table[0]);
   //print_lib();//
   printf("--------------------\n");
   //delete();
   //print_lib();//
+  shuffle();
   
   return 0;
   
