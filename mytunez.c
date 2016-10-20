@@ -371,7 +371,7 @@ int main(){ // make main file
   //delete();
   //print_lib();//
   shuffle();
-  printf("dssdsdaaaaaaaaaaaaadada\n");
+  printf("idiot\n");
   return 0;
   
 }
