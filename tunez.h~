@@ -1,1 +1,2 @@
-void print_list(struct song_node *n);
+
+char * lower(char *p);

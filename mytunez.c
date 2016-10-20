@@ -64,7 +64,7 @@ struct song_node * insert_front(struct song_node *n, char s[256], char a[256] ){
   return temp;
 }
 
-struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){// change so "artist - song" 
+struct song_node * insert_order(struct song_node *n, char s[256], char a[256]){
   struct song_node *temp;
   struct song_node *ret = n;
   temp = (struct song_node *) malloc(sizeof(struct song_node));
@@ -136,30 +136,15 @@ struct song_node * find_first_artist(struct song_node *n, char *s[256]){
 }
 
 
-/*struct song_node * free_list(struct song_node *n){ 
-  struct song_node *temp;
-  temp = (struct song_node *) malloc(sizeof(struct song_node));
-  temp = n;
-  while((*temp).next != NULL){
-    struct song_node *temp1;
-    temp1 = (struct song_node *) malloc(sizeof(struct song_node));
-    temp = (*temp).next;
-    free(temp1);
-    temp1 = NULL;
-  }
-  n= NULL;
-  return n;
-}*/
 
-
-struct node * free_list( struct song_node *n ) { //make null
-
+struct node * free_list( struct song_node *n ) { 
   struct node *f = n;
   while ( n ) {
     n = n->next;
     free(f);
     f = n;    
   }
+  n = NULL;
   return n;
 }
 
@@ -194,7 +179,7 @@ struct song_node * rem(struct song_node *n, int i){
   return n;
 }
 
-void add_song(char *s, char *n){// capuitalization
+void add_song(char *s, char *n){
   char rem;
   if( (n[0] >= 65) && (n[0] <= 90)){
     rem = (n[0] + 32) -97;
@@ -265,7 +250,7 @@ void shuffle(){
 }
 
 
-void print_artist(char *n){// deal with capitalization
+void print_artist(char *n){
   struct song_node *temp = search_artist(n);
   while(temp!= NULL && strcmp(temp->artist,n) ==0){
     printf("%s-%s\n", temp->name, temp->artist);
@@ -274,7 +259,7 @@ void print_artist(char *n){// deal with capitalization
 }
 
 
-void rem_song(char *n){//deal with capitalization
+void rem_song(char *n){
   struct song_node *ret = search_song(n);
   char w = ((ret->artist)[0]) -97;
   // printf("%d\n", w);
@@ -311,6 +296,16 @@ void delete(){
 
 int main(){ // make main file
   srand(time(NULL));
+  printf("START OF TESTING --- TESTING SECOND SET FUNCTION WHICH USE FIRST SET PROVING THEY TOO WORK\n");
+  printf("Adding songs beach boys-wouldnt it be nice, beach boys-god only knows, beach boys-i just wasn't made for these times, beatles-a day in the life\n");
+  printf("Adding songs cat stevens-father and son cat stevens-where do the children play\n");
+  add_song("wouldnt it be nice", "beach boys");
+	 
+
+
+
+
+  
   /*struct song_node *f;
   f = (struct song_node *) malloc(sizeof(struct song_node));
   char e[256] = "God only knows"; 
@@ -350,28 +345,28 @@ int main(){ // make main file
 
 
   //printf("--------------------\n");
-  add_song("smells Like Teen Spirit", "Nirvana");
-  add_song("saells Like Teen Spirit", "nirvana");
-  add_song("scells Like Teen Spirit", "na");
-  add_song("szells Like Teen Spasasasairit", "nzzzz");
-  add_song("szells Like Tsseen Spirit", "abba");
-  add_song("dancing queen", "anta");
+  //add_song("smells Like Teen Spirit", "Nirvana");
+  //add_song("saells Like Teen Spirit", "nirvana");
+  //add_song("scells Like Teen Spirit", "na");
+  //add_song("szells Like Teen Spasasasairit", "nzzzz");
+  //add_song("szells Like Tsseen Spirit", "abba");
+  //add_song("dancing queen", "anta");
   // print_list(table[13]);
   //print_let('n');
   //printf("--------------------\n");
   //print_lib();
-  printf("--------------------\n");
+  //printf("--------------------\n");
   // shuffle();
   //print_artist("nzzzz");
   //print_list(table[0]);
   //rem_song("szells like tsseen spirit");
   //print_list(table[0]);
   //print_lib();//
-  printf("--------------------\n");
+  //printf("--------------------\n");
   //delete();
   //print_lib();//
-  shuffle();
-  printf("idiot\n");
+  //shuffle();
+  //printf("idiot3\n");
   return 0;
   
 }

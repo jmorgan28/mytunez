@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
-
-// may need to change insert to take into acocunt aritist
+#include <time.h>
+#include<math.h>
+#include"tunez.h"
 
 typedef struct song_node{ 
   char name[256];
@@ -135,7 +136,7 @@ struct song_node * find_first_artist(struct song_node *n, char *s[256]){
 }
 
 
-struct song_node * free_list(struct song_node *n){ 
+/*struct song_node * free_list(struct song_node *n){ 
   struct song_node *temp;
   temp = (struct song_node *) malloc(sizeof(struct song_node));
   temp = n;
@@ -148,9 +149,24 @@ struct song_node * free_list(struct song_node *n){
   }
   n= NULL;
   return n;
+}*/
+
+
+struct node * free_list( struct song_node *n ) { //make null
+
+  struct node *f = n;
+  while ( n ) {
+    n = n->next;
+    free(f);
+    f = n;    
+  }
+  return n;
 }
 
+
+
 struct song_node * ret_rand(struct song_node *n){ //make more random
+  
   int i = rand() % length_list(n);
   int k =0;
   while(k < i){
@@ -161,17 +177,21 @@ struct song_node * ret_rand(struct song_node *n){ //make more random
 }
 
 struct song_node * rem(struct song_node *n, int i){
+  struct song_node *ret;
+  ret = (struct song_node *) malloc(sizeof(struct song_node));
+  ret = n;
   if(i == 0){
-    return n->next;
+    return ret->next;
   }
-  struct song_node *rem = n;
   int k = 0;
   while(k < i-1){
     k ++;
-    n = n->next;
+    ret = ret->next;
   }
-  n->next = (n->next)->next;
-  return rem;
+  ret->next = (ret->next)->next;
+  //print_list(n);
+  //printf("--------------------------------------\n");
+  return n;
 }
 
 void add_song(char *s, char *n){// capuitalization
@@ -228,9 +248,70 @@ void print_lib(){
   }
 }
 
-int main(){
-  /*
-  struct song_node *f;
+void shuffle(){
+  int k = 0;
+  while(k < 4){
+    // used to be using time
+    int i = rand() % 26;
+    if(table[i] != NULL){
+      printf("name:%s\n", table[i]->name);
+      struct song_node *temp = ret_rand(table[i]);
+      printf("%s-%s\n",temp->name, temp->artist );
+      k ++;
+    }
+    
+  }
+  
+}
+
+
+void print_artist(char *n){// deal with capitalization
+  struct song_node *temp = search_artist(n);
+  while(temp!= NULL && strcmp(temp->artist,n) ==0){
+    printf("%s-%s\n", temp->name, temp->artist);
+    temp = temp->next;
+  }
+}
+
+
+void rem_song(char *n){//deal with capitalization
+  struct song_node *ret = search_song(n);
+  char w = ((ret->artist)[0]) -97;
+  // printf("%d\n", w);
+  struct song_node *temp = table[w];
+  struct song_node *sec = table[w];
+  int i = 0;
+  int rems = length_list(temp);
+  //printf("%d\n", rems);
+  while(i < rems -1  && strcmp(temp->name, n) != 0){
+    i ++;
+    temp = temp->next;
+  }
+  //print_list(table[w]);
+  //printf("i = %d\n", i);
+  if(i == 0){
+  table[w] = rem(ret,i);
+  }
+  else{
+    //printf("note:\n");
+    //print_list(rem(table[w], i));
+    table[w] = rem(table[w], i);
+  }
+}
+  
+
+
+void delete(){
+  int i = 0;
+  while(i < 26){
+    table[i] = free_list(table[i]);
+    i ++;
+  }
+}
+
+int main(){ // make main file
+  srand(time(NULL));
+  /*struct song_node *f;
   f = (struct song_node *) malloc(sizeof(struct song_node));
   char e[256] = "God only knows"; 
   //char d[256] = "Beach Boys";
@@ -249,30 +330,49 @@ int main(){
   f = ((insert_order(f,"bbaa", "Beatles")));
   f = ((insert_order(f,"bzzz", "Bzzzes")));
   print_list(f);
+  printf("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
+  print_list(rem(f,0));
+  printf("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
   print_list(find_song(f,"AAA"));
   printf("----\n");
   print_list(find_first_artist(f,"beatles"));
   print_list(f);
   printf("%d\n" ,length_list(f));
-  //print_list(f);
+  print_list(ret_rand(f));
+  free_list(f);
+  print_list(f);
   //printf("----\n");
   //print_list(rem(f,5));
   // f->next = g;
   //print_list(f);
   //lower(e);
-  //printf("%s \n", e);
-  */
-  printf("--------------------\n");
+  //printf("%s \n", e);*/
+
+
+  //printf("--------------------\n");
   add_song("smells Like Teen Spirit", "Nirvana");
   add_song("saells Like Teen Spirit", "nirvana");
-  add_song("szells Like Teen Spirit", "Nirvana");
-  add_song("szells Like Teen Spirit", "na");
-  add_song("szells Like Teen Spirit", "abba");
+  add_song("scells Like Teen Spirit", "na");
+  add_song("szells Like Teen Spasasasairit", "nzzzz");
+  add_song("szells Like Tsseen Spirit", "abba");
   add_song("dancing queen", "anta");
-  print_list(table[13]);
-  print_let('n');
+  // print_list(table[13]);
+  //print_let('n');
+  //printf("--------------------\n");
+  //print_lib();
   printf("--------------------\n");
-  print_lib();
+  // shuffle();
+  //print_artist("nzzzz");
+  //print_list(table[0]);
+  //rem_song("szells like tsseen spirit");
+  //print_list(table[0]);
+  //print_lib();//
+  printf("--------------------\n");
+  //delete();
+  //print_lib();//
+  shuffle();
+  printf("idiot\n");
   return 0;
+  
 }
 
