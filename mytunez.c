@@ -227,8 +227,10 @@ void print_let(char n){
 void print_lib(){
   char i = 0;
   while(i < 26){
+    if(table[i] != NULL){
     print_list(table[i]);
     printf("\n");
+    }
     i ++;
   }
 }
@@ -297,9 +299,19 @@ void delete(){
 int main(){ // make main file
   srand(time(NULL));
   printf("START OF TESTING --- TESTING SECOND SET FUNCTION WHICH USE FIRST SET PROVING THEY TOO WORK\n");
-  printf("Adding songs beach boys-wouldnt it be nice, beach boys-god only knows, beach boys-i just wasn't made for these times, beatles-a day in the life\n");
-  printf("Adding songs cat stevens-father and son cat stevens-where do the children play\n");
+  printf("Adding songs beach boys-wouldnt it be nice, beach boys-god only knows, beach boys-i just wasnt made for these times, beatles-a day in the life\n");
+  printf("Adding songs cat stevens-father and son cat stevens-where do the children play randy newman-short people\n");
   add_song("wouldnt it be nice", "beach boys");
+  add_song("god only knows", "beach boys");
+  add_song("i just wasnt made for these times", "beach boys");
+  add_song("a day in the life", "beatles");
+  add_song("father and son", "cat stevens");
+  add_song("where do the children play", "cat stevens");
+  add_song("short people", "randy newman");
+  printf(" TESTING PRINT LIBRARY AND ADD SONG\n");
+  print_lib();
+  
+  
 	 
 
 
