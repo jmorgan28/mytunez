@@ -308,8 +308,20 @@ int main(){ // make main file
   add_song("father and son", "cat stevens");
   add_song("where do the children play", "cat stevens");
   add_song("short people", "randy newman");
-  printf(" TESTING PRINT LIBRARY AND ADD SONG\n");
+  printf("TESTING PRINT LIBRARY AND ADD SONG\n");
   print_lib();
+  printf("TESTING SEARCH SONG -- returns node with song, will use print to show\n");
+  printf("search god only knows\n");
+  print_list(search_song("god only knows"));
+  printf("search not a song\n");
+  print_list(search_song("not a song"));
+  printf("TESTING SEARCH ARTIST -- returns first node with artist, will use print to show\n");
+  printf("search artist beatles\n");
+  print_list(search_artist("beatles"));
+  printf("search artist cat stevens\n");
+  print_list(search_artist("cat stevens"));
+  printf("the kinks\n");
+  print_list(search_artist("the kinks"));
   
   
 	 
