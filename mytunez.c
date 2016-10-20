@@ -138,11 +138,11 @@ struct song_node * find_first_artist(struct song_node *n, char *s[256]){
 
 
 struct node * free_list( struct song_node *n ) { 
-  struct node *f = n;
+  struct node *temp = n;
   while ( n ) {
     n = n->next;
-    free(f);
-    f = n;    
+    free(temp);
+    temp = n;    
   }
   n = NULL;
   return n;
@@ -241,7 +241,7 @@ void shuffle(){
     // used to be using time
     int i = rand() % 26;
     if(table[i] != NULL){
-      printf("name:%s\n", table[i]->name);
+      //printf("name:%s\n", table[i]->name);
       struct song_node *temp = ret_rand(table[i]);
       printf("%s-%s\n",temp->name, temp->artist );
       k ++;
@@ -331,8 +331,22 @@ int main(){ // make main file
   printf("TESTING PRINT ARTIST\n");
   printf("print the beach boys\n");
   print_artist("beach boys");
-  
-  
+  printf("TESTING SHUFFLE ARTIST\n");
+  printf("shuffle:\n");
+  shuffle();
+  printf("shuffle again:\n");
+  shuffle();
+  printf("TESTING DELETE SONG\n");
+  printf("deleting god only knows:\n");
+  rem_song("god only knows");
+  print_lib();
+  printf("deleting father and son:\n");
+  rem_song("father and son");
+  print_lib();
+  printf("DELETE ALL NODES -- nodes deleted then printed\n");
+  delete();
+  printf("print afrer deletion, nothing prints because null and free\n");
+  print_lib();
 	 
 
 
