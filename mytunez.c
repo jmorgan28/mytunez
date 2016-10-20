@@ -3,7 +3,7 @@
 #include<string.h>
 #include <time.h>
 #include<math.h>
-// may need to change insert to take into acocunt aritist
+#include"tunez.h"
 
 typedef struct song_node{ 
   char name[256];
@@ -254,6 +254,7 @@ void shuffle(){
     // used to be using time
     int i = rand() % 26;
     if(table[i] != NULL){
+      printf("name:%s\n", table[i]->name);
       struct song_node *temp = ret_rand(table[i]);
       printf("%s-%s\n",temp->name, temp->artist );
       k ++;
@@ -370,7 +371,7 @@ int main(){ // make main file
   //delete();
   //print_lib();//
   shuffle();
-  
+  printf("dssdsdaaaaaaaaaaaaadada\n");
   return 0;
   
 }
