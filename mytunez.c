@@ -298,7 +298,7 @@ void delete(){
 
 int main(){ // make main file
   srand(time(NULL));
-  printf("START OF TESTING --- TESTING SECOND SET FUNCTION WHICH USE FIRST SET PROVING THEY TOO WORK\n");
+  printf("START OF TESTING --- TESTING SECOND SET FUNCTIONS WHICH USE FIRST SET PROVING THEY TOO WORK\n");
   printf("Adding songs beach boys-wouldnt it be nice, beach boys-god only knows, beach boys-i just wasnt made for these times, beatles-a day in the life\n");
   printf("Adding songs cat stevens-father and son cat stevens-where do the children play randy newman-short people\n");
   add_song("wouldnt it be nice", "beach boys");
@@ -328,6 +328,9 @@ int main(){ // make main file
   print_let('b');
   printf("print under w\n");
   print_let('w');
+  printf("TESTING PRINT ARTIST\n");
+  printf("print the beach boys\n");
+  print_artist("beach boys");
   
   
 	 
