@@ -251,7 +251,7 @@ void print_lib(){
 /*void shuffle(){
   int k = 0;
   while(k < 20){
-    sranddev();
+    sranddev(); // used to be using time
     int i = rand() % 26;
     if(table[i] != NULL){
       struct song_node *temp = ret_rand(table[i]);
