@@ -15,7 +15,7 @@ song_node *table[26];
 
 void print_list(struct song_node *n){
   if(n == NULL || n == 0){
-    printf("[]");
+    printf("[]\n");
     return;
   }
   printf("[ ");
@@ -320,8 +320,14 @@ int main(){ // make main file
   print_list(search_artist("beatles"));
   printf("search artist cat stevens\n");
   print_list(search_artist("cat stevens"));
-  printf("the kinks\n");
+  printf("search artist the kinks\n");
   print_list(search_artist("the kinks"));
+  //printf("\n");
+  printf("TESTING PRINT LETTER ENTRIES\n");
+  printf("print under b\n");
+  print_let('b');
+  printf("print under w\n");
+  print_let('w');
   
   
 	 
